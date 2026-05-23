@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us — Horbach Asset Guide</title>
+    <meta name="description" content="From experts for expats. Horbach Asset Guide is the dedicated expat-facing layer of Horbach, one of Germany's leading financial planners since 1983.">
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .abt-hero {
+            position: relative;
+            padding: 140px 0 80px;
+            background: url('about-hero-bg.png') center/cover no-repeat;
+            overflow: hidden;
+        }
+        .abt-hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(10, 25, 15, 0.65);
+        }
+        .abt-hero-deco {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .abt-hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+        .abt-hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 5vw, 3.2rem);
+            font-weight: 700;
+            line-height: 1.15;
+            color: #fff;
+            margin-bottom: 18px;
+        }
+        .abt-hero p {
+            font-size: 1.15rem;
+            color: rgba(255,255,255,0.85);
+            line-height: 1.65;
+        }
+        .abt-mission {
+            padding: 80px 0;
+            background: var(--color-bg);
+        }
+        .abt-mission-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 56px;
+            align-items: center;
+        }
+        @media (max-width: 900px) {
+            .abt-mission-grid { grid-template-columns: 1fr; gap: 36px; }
+        }
+        .abt-mission-text h2 {
+            font-family: var(--font-display);
+            font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: 18px;
+            line-height: 1.2;
+        }
+        .abt-mission-text p {
+            font-size: 1.05rem;
+            color: var(--color-text-muted);
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+        .abt-mission-visual {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--color-border);
+        }
+        .abt-mission-visual img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .abt-timeline {
+            padding: 32px 0;
+            background: var(--color-bg-elevated);
+            border-top: 1px solid var(--color-border);
+        }
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 20px;
+        }
+        @media (max-width: 768px) {
+            .timeline-grid { grid-template-columns: 1fr; }
+        }
+        .timeline-card {
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            transition: all var(--transition);
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            overflow: hidden;
+        }
+        .timeline-card:hover {
+            border-color: var(--color-border-hover);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+        .timeline-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--color-gold), var(--color-green));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .timeline-card:hover::before { opacity: 1; }
+        .timeline-year {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--color-gold);
+            opacity: 0.3;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+        .timeline-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--color-text);
+        }
+        .timeline-card p {
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+            line-height: 1.5;
+        }
+        .abt-focus {
+            padding: 80px 0;
+            background: var(--color-bg);
+        }
+        .focus-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 48px;
+        }
+        @media (max-width: 768px) {
+            .focus-list { grid-template-columns: 1fr; }
+        }
+        .focus-item {
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            padding: 28px;
+            transition: all var(--transition);
+        }
+        .focus-item:hover {
+            border-color: var(--color-green);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-sm);
+        }
+        .focus-item h4 {
+            font-family: var(--font-display);
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--color-text);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .focus-item p {
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+            line-height: 1.55;
+        }
+        .abt-cta {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--color-green-dark), var(--color-green));
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .abt-cta .deco-ring {
+            border-color: rgba(255,255,255,0.15);
+            opacity: 0.3;
+        }
+        .abt-cta h2 {
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 4vw, 2.6rem);
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 14px;
+            position: relative;
+            z-index: 1;
+        }
+        .abt-cta p {
+            font-size: 1.05rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 28px;
+            max-width: 520px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="Horbach Asset Guide" class="logo-img">
+                <span class="logo-text">Horbach Asset Guide</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" class="active">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="index.html#book">Book a Call</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="https://instagram.com/horbach.asset.guide" target="_blank" class="nav-ig">@horbach.asset.guide</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- About Hero -->
+    <section class="abt-hero">
+        <div class="abt-hero-deco">
+            <div class="deco-ring" style="top:15%;left:8%;width:140px;height:140px;"></div>
+            <div class="deco-dot" style="top:30%;right:12%;"></div>
+            <div class="deco-dot" style="bottom:25%;left:15%;"></div>
+        </div>
+        <div class="container">
+            <div class="abt-hero-content">
+                <span class="section-tag" style="color:rgba(255,255,255,0.9); border-color:rgba(255,255,255,0.2); background:rgba(255,255,255,0.08); backdrop-filter:blur(4px); font-size:0.75rem; padding:4px 12px; margin-bottom:12px;">About Us</span>
+                <h1>From Experts for Expats</h1>
+                <p>We were not happy about how financial planning for expats worked in Germany, so we changed it. Our team is built by expats, for expats — helping international residents build wealth, protect income, and retire with confidence.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission -->
+    <section class="abt-mission">
+        <div class="container">
+            <div class="abt-mission-grid">
+                <div class="abt-mission-text">
+                    <span class="section-tag">Who We Are</span>
+                    <h2>We Were Not Happy With How Financial Planning for Expats Worked — So We Changed It.</h2>
+                    <p>Horbach Asset Guide is the dedicated expat-facing layer of <strong>Horbach</strong>, one of Germany's largest independent financial planning networks. We combine Horbach's institutional depth (1,000+ consultants, 39 centers, 40+ years) with a modern, multilingual approach built for the international professional.</p>
+                    <p>Whether you are a software engineer in Berlin, a medical resident in Munich, or a founder in Hamburg — we speak your language, understand your visa status, and design plans that work across borders.</p>
+                    <a href="index.html#book" class="btn btn-primary">Book a Free 15-Min Call</a>
+                </div>
+                <div class="abt-mission-visual">
+                    <img src="about.png" alt="Financial advisory team for expats in Germany">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="abt-timeline">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Our Story</span>
+                <h2 class="section-title">Two Milestones, One Mission</h2>
+                <div class="deco-line"></div>
+            </div>
+            <div class="timeline-grid">
+                <div class="timeline-card">
+                    <div class="timeline-year">1983</div>
+                    <h3>Meet Horbach</h3>
+                    <p>Horbach was founded and has grown into one of Germany's leading independent financial planning providers. Today, the network includes more than 1,000 independent consultants across 39 advisory centers in 28 cities — serving private clients, companies, and specialists with Best-Select-Beratung.</p>
+                </div>
+                <div class="timeline-card">
+                    <div class="timeline-year">2026</div>
+                    <h3>Horbach Asset Guide — Origins</h3>
+                    <p>We launched as a dedicated pilot project: <em>Financial planning for high-skilled migrants in Germany.</em> Built by expats who experienced the same confusion you did — pension letters in German, insurance fine print, and no one to ask in English. We exist to fix that.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Focus Areas -->
+    <section class="abt-focus">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">What We Do</span>
+                <h2 class="section-title">Comprehensive Financial Planning</h2>
+                <div class="deco-line"></div>
+            </div>
+            <div class="focus-list">
+                <div class="focus-item">
+                    <h4><span class="specialty-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>Household & Family Safety</h4>
+                    <p>Protect your family's lifestyle with the right insurance, emergency reserves, and liability coverage tailored to German law.</p>
+                </div>
+                <div class="focus-item">
+                    <h4><span class="specialty-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>Property & Real Estate</h4>
+                    <p>Mortgage comparison, purchase financing, and property investment guidance — whether you are buying or renting long-term.</p>
+                </div>
+                <div class="focus-item">
+                    <h4><span class="specialty-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Employee Benefits</h4>
+                    <p>Design pension schemes, health perks, and benefit packages for teams. Corporate solutions for founders and HR departments.</p>
+                </div>
+                <div class="focus-item">
+                    <h4><span class="specialty-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></span>Mandatory Coverage</h4>
+                    <p>Health, liability, and legal insurance that satisfies visa requirements and protects you against Germany-specific risks.</p>
+                </div>
+                <div class="focus-item">
+                    <h4><span class="specialty-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></span>Asset Growth</h4>
+                    <p>ETF portfolios, savings plans, and inflation-hedging strategies with clear risk profiles and tax-optimized wrappers.</p>
+                </div>
+                <div class="focus-item">
+                    <h4><span class="specialty-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>Account Tuning</h4>
+                    <p>Optimize Steuerfreibeträge, Kapitalertragssteuer allowances, and Freistellungsauftrag setup to keep more of what you earn.</p>
+                </div>
+                <div class="focus-item">
+                    <h4><span class="specialty-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span>Wealth Transfer</h4>
+                    <p>Inheritance planning, survivor benefits, and cross-border estate structures for families with assets in multiple countries.</p>
+                </div>
+                <div class="focus-item">
+                    <h4><span class="specialty-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>Pension Gap Analysis</h4>
+                    <p>Riester, Rürup, company pensions, and private retirement accounts — tailored to close the gap between state pension and your desired lifestyle.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom CTA -->
+    <section class="abt-cta">
+        <div class="deco-ring" style="top:20%;left:10%;width:160px;height:160px;"></div>
+        <div class="deco-ring" style="bottom:15%;right:15%;width:100px;height:100px;"></div>
+        <div class="container">
+            <h2>Ready to Meet the Team?</h2>
+            <p>Book a free 15-min discovery call. No obligations, no sales pitch — just clarity on your next step in Germany.</p>
+            <a href="index.html#book" class="btn btn-outline btn-white">Book Your Free Call</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <img src="logo.png" alt="Horbach Asset Guide" class="logo-img">
+                        <span class="logo-text">Horbach Asset Guide</span>
+                    </a>
+                    <p>Smart finance for expats in Germany. Powered by Horbach — one of Germany's leading financial planners since 1983.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Navigate</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="index.html#book">Book a Call</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Horbach</h4>
+                    <ul>
+                        <li><a href="https://www.horbach.de" target="_blank">horbach.de</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Impressum</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© Horbach Asset Guide. All rights reserved.</p>
+                <p class="footer-ig">Follow: <a href="https://instagram.com/horbach.asset.guide" target="_blank">@horbach.asset.guide</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    (function() {
+        'use strict';
+        const menuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        if (menuBtn && navLinks) {
+            menuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                menuBtn.setAttribute('aria-expanded', String(navLinks.classList.contains('active')));
+            });
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    menuBtn.setAttribute('aria-expanded', 'false');
+                });
+            });
+        }
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+                navbar.style.padding = '12px 0';
+            } else {
+                navbar.classList.remove('scrolled');
+                navbar.style.padding = '16px 0';
+            }
+        }, { passive: true });
+    })();
+    </script>
+</body>
+</html>
