@@ -531,74 +531,36 @@
                 <h2 class="section-title">Book a Free 15-Min Call</h2>
                 <div class="deco-line"></div>
             </div>
-            <div class="booking-grid">
+            <div class="booking-grid compact">
                 <div class="booking-info">
-                    <p class="booking-desc">
-                        Not sure where to start with investing, real estate, or pensions in Germany?
-                        Fill in the form and we will reach out within 24 hours to confirm your slot.
-                    </p>
+                    <p class="booking-desc">Fill in the form and we will reach out within 24 hours to confirm your slot.</p>
                     <ul class="booking-benefits">
-                        <li>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                                <polyline points="20 6 9 17 4 12"/>
-                            </svg>
-                            No obligations, no sales pitch
-                        </li>
-                        <li>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                                <polyline points="20 6 9 17 4 12"/>
-                            </svg>
-                            Tailored to your income &amp; goals
-                        </li>
-                        <li>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                                <polyline points="20 6 9 17 4 12"/>
-                            </svg>
-                            Available in German, English &amp; Spanish
-                        </li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>No obligations, no sales pitch</li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Tailored to your income &amp; goals</li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>DE · EN · ES</li>
                     </ul>
                 </div>
-                <div class="booking-widget">
-                    <form class="booking-form" id="bookingForm" action="https://formspree.io/f/YOUR_FORM_ID">
-                        <div class="form-group">
-                            <label for="bookName">Full Name</label>
-                            <input type="text" id="bookName" name="name" placeholder="Your name" required>
+                <div class="booking-widget compact">
+                    <form class="booking-form compact" id="bookingForm" action="https://formspree.io/f/YOUR_FORM_ID">
+                        <div class="form-row">
+                            <div class="form-group"><input type="text" id="bookName" name="name" placeholder="Full Name" required></div>
+                            <div class="form-group"><input type="email" id="bookEmail" name="email" placeholder="Email" required></div>
                         </div>
                         <div class="form-row">
+                            <div class="form-group"><input type="tel" id="bookPhone" name="phone" placeholder="Phone / WhatsApp" required></div>
                             <div class="form-group">
-                                <label for="bookEmail">Email Address</label>
-                                <input type="email" id="bookEmail" name="email" placeholder="you@example.com" required>
+                                <select id="bookTopic" name="topic" required>
+                                    <option value="" disabled selected>Topic...</option>
+                                    <option value="investing">ETF &amp; Investing</option>
+                                    <option value="realestate">Real Estate</option>
+                                    <option value="pension">Pension</option>
+                                    <option value="insurance">Insurance</option>
+                                    <option value="general">General</option>
+                                </select>
                             </div>
-                            <div class="form-group">
-                                <label for="bookPhone">Phone / WhatsApp</label>
-                                <input type="tel" id="bookPhone" name="phone" placeholder="+49 170 123 4567" required>
-                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="bookTopic">What do you need help with?</label>
-                            <select id="bookTopic" name="topic" required>
-                                <option value="" disabled selected>Select a topic...</option>
-                                <option value="investing">ETF &amp; Investing</option>
-                                <option value="realestate">Real Estate &amp; Mortgages</option>
-                                <option value="pension">Pension &amp; Retirement</option>
-                                <option value="insurance">Insurance &amp; Protection</option>
-                                <option value="general">General Financial Planning</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="bookMessage">Anything else we should know?</label>
-                            <textarea id="bookMessage" name="message" rows="3" placeholder="Optional: your situation, goals, or questions..."></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-full">
-                            <span class="btn-text">Book My Free Call</span>
-                            <span class="btn-loader" hidden>Sending...</span>
-                        </button>
-                        <p class="form-note">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                            </svg>
-                            We will email you within 24 hours to confirm your time slot.
-                        </p>
+                        <button type="submit" class="btn btn-primary btn-full">Book My Free Call</button>
+                        <p class="form-note">We will email you within 24 hours to confirm your time slot.</p>
                     </form>
                 </div>
             </div>

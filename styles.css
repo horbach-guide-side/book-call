@@ -1640,6 +1640,56 @@ img, svg {
     margin-bottom: 0;
 }
 
+/* Compact Booking */
+.booking-grid.compact {
+    gap: 12px;
+}
+
+.booking-grid.compact .booking-desc {
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+}
+
+.booking-grid.compact .booking-benefits {
+    gap: 6px;
+}
+
+.booking-grid.compact .booking-benefits li {
+    font-size: 0.8rem;
+}
+
+.booking-widget.compact {
+    padding: 16px;
+}
+
+.booking-form.compact {
+    gap: 10px;
+}
+
+.booking-form.compact .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.booking-form.compact .form-group input,
+.booking-form.compact .form-group select {
+    padding: 10px 12px;
+    font-size: 0.9rem;
+}
+
+.booking-form.compact .form-note {
+    font-size: 0.8rem;
+    margin-top: 4px;
+}
+
+@media (max-width: 640px) {
+    .booking-form.compact .form-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+}
+
 /* ============================================
    CONTACT
    ============================================ */
