@@ -14,6 +14,7 @@
     if (menuBtn && navLinks) {
         menuBtn.addEventListener('click', () => {
             navLinks.classList.toggle('active');
+            menuBtn.classList.toggle('active');
             const isOpen = navLinks.classList.contains('active');
             menuBtn.setAttribute('aria-expanded', String(isOpen));
         });
@@ -22,6 +23,7 @@
         navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
+                menuBtn.classList.remove('active');
                 menuBtn.setAttribute('aria-expanded', 'false');
             });
         });
