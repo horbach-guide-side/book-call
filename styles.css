@@ -369,10 +369,25 @@ img, svg {
         display: block;
         padding: 16px 0;
         font-size: 1.1rem;
+        color: var(--color-text);
+    }
+
+    .nav-links a:hover {
+        color: var(--color-green);
     }
 
     .nav-links a::after {
         display: none;
+    }
+
+    .nav-links .nav-ig,
+    .navbar.scrolled .nav-links .nav-ig {
+        color: var(--color-gold) !important;
+    }
+
+    .nav-links .nav-ig:hover,
+    .navbar.scrolled .nav-links .nav-ig:hover {
+        color: var(--color-gold-dark) !important;
     }
 }
 
