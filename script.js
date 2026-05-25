@@ -2,14 +2,55 @@
  * Horbach Asset Guide — Landing Page Scripts
  */
 
+// Store original page URL in window.name so it persists across Google Translate navigations
+// window.name persists across same-tab navigations even across domains
+(function() {
+    var currentUrl = window.location.href;
+    var isTranslated = currentUrl.includes('translate.google') || currentUrl.includes('.translate.goog');
+    if (!isTranslated && !window.name.startsWith('horbach_orig:')) {
+        window.name = 'horbach_orig:' + currentUrl;
+    }
+})();
+
+// Global translator function (called from inline onchange)
+function translatePage(lang) {
+    if (!lang) return;
+    var url = window.location.href;
+    // First, try to get the original URL from window.name (persists across Google Translate navigations)
+    if (window.name.startsWith('horbach_orig:')) {
+        url = window.name.substring('horbach_orig:'.length);
+    } else if (url.includes('translate.google') || url.includes('.translate.goog')) {
+        // Fallback: try to extract from URL parameters
+        var match = url.match(/[?&]u=([^&]+)/);
+        if (match) {
+            url = decodeURIComponent(match[1]);
+        }
+    }
+    window.location.href = 'https://translate.google.com/translate?sl=en&tl=' + lang + '&u=' + encodeURIComponent(url);
+}
+
 (function () {
     'use strict';
 
     // ============================================
-    // Mobile Menu Toggle
+    // Mobile Menu Toggle (with body scroll lock)
     // ============================================
     const menuBtn = document.querySelector('.mobile-menu-btn');
     const navLinks = document.querySelector('.nav-links');
+    let savedScrollY = 0;
+
+    function lockBodyScroll() {
+        savedScrollY = window.scrollY;
+        document.body.style.top = '-' + savedScrollY + 'px';
+        document.body.classList.add('menu-open');
+        if (navLinks) navLinks.scrollTop = 0;
+    }
+
+    function unlockBodyScroll() {
+        document.body.classList.remove('menu-open');
+        document.body.style.top = '';
+        window.scrollTo(0, savedScrollY);
+    }
 
     if (menuBtn && navLinks) {
         menuBtn.addEventListener('click', () => {
@@ -17,6 +58,11 @@
             menuBtn.classList.toggle('active');
             const isOpen = navLinks.classList.contains('active');
             menuBtn.setAttribute('aria-expanded', String(isOpen));
+            if (isOpen) {
+                lockBodyScroll();
+            } else {
+                unlockBodyScroll();
+            }
         });
 
         // Close menu when clicking a link
@@ -25,6 +71,7 @@
                 navLinks.classList.remove('active');
                 menuBtn.classList.remove('active');
                 menuBtn.setAttribute('aria-expanded', 'false');
+                unlockBodyScroll();
             });
         });
     }
