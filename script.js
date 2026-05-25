@@ -41,14 +41,12 @@ function translatePage(lang) {
 
     function lockBodyScroll() {
         savedScrollY = window.scrollY;
-        document.body.style.top = '-' + savedScrollY + 'px';
         document.body.classList.add('menu-open');
         if (navLinks) navLinks.scrollTop = 0;
     }
 
     function unlockBodyScroll() {
         document.body.classList.remove('menu-open');
-        document.body.style.top = '';
         window.scrollTo(0, savedScrollY);
     }
 

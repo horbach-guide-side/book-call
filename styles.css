@@ -364,24 +364,24 @@ img, svg {
     .nav-links .nav-lang .lang-card {
         display: flex;
         align-items: center;
-        padding: 14px 24px;
-        background: rgba(0,0,0,0.72);
+        padding: 10px 20px;
+        background: rgba(0,0,0,0.6);
         border-radius: var(--radius-md);
         backdrop-filter: blur(14px) saturate(1.2);
         -webkit-backdrop-filter: blur(14px) saturate(1.2);
         border: 1px solid rgba(255,255,255,0.08);
-        box-shadow: 0 6px 24px rgba(0,0,0,0.28);
+        box-shadow: 0 4px 16px rgba(0,0,0,0.2);
         width: auto;
-        min-width: 160px;
+        min-width: 140px;
         transition: all 0.25s ease;
         cursor: pointer;
         gap: 6px;
     }
 
     .nav-links .nav-lang .lang-card:hover {
-        background: rgba(0,0,0,0.88);
-        transform: translateX(-6px);
-        box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+        background: rgba(0,0,0,0.8);
+        transform: translateX(-4px);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.3);
     }
 
     .nav-links .nav-lang .lang-card .lang-select {
@@ -453,20 +453,31 @@ img, svg {
 
     .nav-links {
         position: fixed;
-        top: 68px;
+        top: 0;
         left: 0;
-        right: 0;
-        bottom: 0;
-        background: transparent;
+        width: 100%;
+        height: 100vh;
+        height: 100dvh;
+        max-height: 100dvh;
+        min-height: -webkit-fill-available;
+        background: rgba(10, 20, 12, 0.82);
+        backdrop-filter: blur(16px) saturate(1.2);
+        -webkit-backdrop-filter: blur(16px) saturate(1.2);
         flex-direction: column;
-        align-items: flex-end;
-        justify-content: center;
-        padding: 24px 20px;
-        gap: 10px;
+        align-items: stretch;
+        justify-content: flex-start;
+        padding: 80px 20px 100px;
+        gap: 8px;
         transform: translateX(100%);
         transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         border-top: none;
         pointer-events: none;
+        overflow-y: auto;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior-y: contain;
+        touch-action: pan-y;
+        z-index: 1001;
     }
 
     .nav-links.active {
@@ -475,7 +486,7 @@ img, svg {
     }
 
     .nav-links li {
-        width: auto;
+        width: 100%;
         border-bottom: none;
         opacity: 0;
         transform: translateX(40px);
@@ -495,24 +506,25 @@ img, svg {
 
     .nav-links a {
         display: block;
-        padding: 14px 24px;
-        font-size: 0.95rem;
+        padding: 10px 20px;
+        font-size: 0.9rem;
         font-weight: 500;
-        color: rgba(255,255,255,0.82);
-        background: rgba(0,0,0,0.72);
+        color: rgba(255,255,255,0.9);
+        background: rgba(0,0,0,0.6);
         border-radius: var(--radius-md);
         backdrop-filter: blur(14px) saturate(1.2);
         -webkit-backdrop-filter: blur(14px) saturate(1.2);
         border: 1px solid rgba(255,255,255,0.08);
-        box-shadow: 0 6px 24px rgba(0,0,0,0.28);
+        box-shadow: 0 4px 16px rgba(0,0,0,0.2);
         transition: all 0.25s ease;
+        flex-shrink: 0;
     }
 
     .nav-links a:hover {
-        background: rgba(0,0,0,0.88);
+        background: rgba(0,0,0,0.8);
         color: #ffffff;
-        transform: translateX(-6px);
-        box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+        transform: translateX(-4px);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.3);
     }
 
     .nav-links a::after {
@@ -522,22 +534,22 @@ img, svg {
     /* Override desktop .active styles inside mobile menu */
     .nav-links a.active,
     .navbar.scrolled .nav-links a.active {
-        color: rgba(255,255,255,0.82);
-        background: rgba(0,0,0,0.72);
+        color: rgba(255,255,255,0.9);
+        background: rgba(0,0,0,0.6);
         border: 1px solid rgba(255,255,255,0.08);
         border-radius: var(--radius-md);
-        padding: 14px 24px;
+        padding: 10px 20px;
         backdrop-filter: blur(14px) saturate(1.2);
         -webkit-backdrop-filter: blur(14px) saturate(1.2);
-        box-shadow: 0 6px 24px rgba(0,0,0,0.28);
+        box-shadow: 0 4px 16px rgba(0,0,0,0.2);
     }
 
     .nav-links a.active:hover,
     .navbar.scrolled .nav-links a.active:hover {
-        background: rgba(0,0,0,0.88);
+        background: rgba(0,0,0,0.8);
         color: #ffffff;
-        transform: translateX(-6px);
-        box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+        transform: translateX(-4px);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.3);
     }
 
     /* Override desktop scrolled color so mobile menu text stays white on dark cards */
@@ -2148,6 +2160,12 @@ img, svg {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+/* Lock body scroll when mobile menu is open */
+body.menu-open {
+    overflow: hidden;
+    height: 100%;
 }
 
 /* Scrollbar */
