@@ -2,32 +2,42 @@
  * Horbach Asset Guide — Landing Page Scripts
  */
 
-// Store original page URL in window.name so it persists across Google Translate navigations
-// window.name persists across same-tab navigations even across domains
-(function() {
-    var currentUrl = window.location.href;
-    var isTranslated = currentUrl.includes('translate.google') || currentUrl.includes('.translate.goog');
-    if (!isTranslated && !window.name.startsWith('horbach_orig:')) {
-        window.name = 'horbach_orig:' + currentUrl;
-    }
-})();
-
 // Global translator function (called from inline onchange)
 function translatePage(lang) {
     if (!lang) return;
-    var url = window.location.href;
-    // First, try to get the original URL from window.name (persists across Google Translate navigations)
-    if (window.name.startsWith('horbach_orig:')) {
-        url = window.name.substring('horbach_orig:'.length);
-    } else if (url.includes('translate.google') || url.includes('.translate.goog')) {
-        // Fallback: try to extract from URL parameters
-        var match = url.match(/[?&]u=([^&]+)/);
+
+    // 1. Try to get the original URL from localStorage
+    var originalUrl = localStorage.getItem('horbach_original_url');
+
+    // 2. If not in localStorage, try to extract from current Google Translate URL
+    var currentUrl = window.location.href;
+    if (!originalUrl && (currentUrl.includes('translate.google') || currentUrl.includes('.translate.goog'))) {
+        var match = currentUrl.match(/[?&]u=([^&]+)/);
         if (match) {
-            url = decodeURIComponent(match[1]);
+            originalUrl = decodeURIComponent(match[1]);
         }
     }
-    window.location.href = 'https://translate.google.com/translate?sl=en&tl=' + lang + '&u=' + encodeURIComponent(url);
+
+    // 3. Fallback to current page URL
+    if (!originalUrl) {
+        originalUrl = currentUrl;
+    }
+
+    // 4. Always store the original URL in localStorage for next time
+    localStorage.setItem('horbach_original_url', originalUrl);
+
+    // 5. Build Google Translate URL
+    window.location.href = 'https://translate.google.com/translate?sl=en&tl=' + lang + '&u=' + encodeURIComponent(originalUrl);
 }
+
+// On page load: store original URL if this is the real site (not translated)
+(function() {
+    var currentUrl = window.location.href;
+    var isTranslated = currentUrl.includes('translate.google') || currentUrl.includes('.translate.goog');
+    if (!isTranslated) {
+        localStorage.setItem('horbach_original_url', currentUrl);
+    }
+})();
 
 (function () {
     'use strict';

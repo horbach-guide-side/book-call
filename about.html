@@ -438,28 +438,26 @@
     </a>
 
     <script>
-    // Store original page URL in window.name so it persists across Google Translate navigations
-    (function() {
-        var currentUrl = window.location.href;
-        var isTranslated = currentUrl.includes('translate.google') || currentUrl.includes('.translate.goog');
-        if (!isTranslated && !window.name.startsWith('horbach_orig:')) {
-            window.name = 'horbach_orig:' + currentUrl;
-        }
-    })();
-
     // Global translator function
     function translatePage(lang) {
         if (!lang) return;
-        var url = window.location.href;
-        // First, try to get the original URL from window.name (persists across Google Translate navigations)
-        if (window.name.startsWith('horbach_orig:')) {
-            url = window.name.substring('horbach_orig:'.length);
-        } else if (url.includes('translate.google') || url.includes('.translate.goog')) {
-            var match = url.match(/[?&]u=([^&]+)/);
-            if (match) { url = decodeURIComponent(match[1]); }
+        var originalUrl = localStorage.getItem('horbach_original_url');
+        var currentUrl = window.location.href;
+        if (!originalUrl && (currentUrl.includes('translate.google') || currentUrl.includes('.translate.goog'))) {
+            var match = currentUrl.match(/[?&]u=([^&]+)/);
+            if (match) { originalUrl = decodeURIComponent(match[1]); }
         }
-        window.location.href = 'https://translate.google.com/translate?sl=en&tl=' + lang + '&u=' + encodeURIComponent(url);
+        if (!originalUrl) { originalUrl = currentUrl; }
+        localStorage.setItem('horbach_original_url', originalUrl);
+        window.location.href = 'https://translate.google.com/translate?sl=en&tl=' + lang + '&u=' + encodeURIComponent(originalUrl);
     }
+
+    (function() {
+        var currentUrl = window.location.href;
+        if (!currentUrl.includes('translate.google') && !currentUrl.includes('.translate.goog')) {
+            localStorage.setItem('horbach_original_url', currentUrl);
+        }
+    })();
 
     (function() {
         'use strict';
