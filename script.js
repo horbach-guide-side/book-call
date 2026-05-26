@@ -525,7 +525,7 @@ function translatePage(lang) {
         initial: document.getElementById('valInitial'),
         monthly: document.getElementById('valMonthly'),
         rate: document.getElementById('valRate'),
-        years: document.getElementById('valYears'),
+        years: document.getElementById('intValYears'),
         inflation: document.getElementById('valInflation'),
     };
 
