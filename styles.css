@@ -1810,29 +1810,29 @@ img, svg {
 }
 
 .interest-table-wrap {
-    margin-top: 20px;
+    margin-top: 16px;
 }
 
 .interest-table-title {
     font-family: var(--font-display);
-    font-size: 1rem;
+    font-size: 0.85rem;
     font-weight: 600;
     color: var(--color-text);
-    margin-bottom: 10px;
+    margin-bottom: 6px;
 }
 
 .interest-table-scroll {
-    max-height: 360px;
+    max-height: 240px;
     overflow-y: auto;
     border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-sm);
     background: var(--color-bg-card);
 }
 
 .interest-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
 }
 
 .interest-table thead {
@@ -1843,14 +1843,14 @@ img, svg {
 
 .interest-table th {
     background: var(--color-bg-elevated);
-    padding: 8px 10px;
+    padding: 4px 8px;
     text-align: right;
     font-weight: 600;
     color: var(--color-text);
     border-bottom: 1px solid var(--color-border);
-    font-size: 0.75rem;
+    font-size: 0.65rem;
     text-transform: uppercase;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.2px;
 }
 
 .interest-table th:first-child {
@@ -1858,7 +1858,7 @@ img, svg {
 }
 
 .interest-table td {
-    padding: 6px 10px;
+    padding: 3px 8px;
     text-align: right;
     color: var(--color-text-muted);
     border-bottom: 1px solid var(--color-border);
